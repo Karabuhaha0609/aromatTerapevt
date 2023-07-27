@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div layout:fragment="content">
+
+  <div class="col-md-5">
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Добавить молекулу</h5>
+        <form class="row g-2 needs-validation" th:action="@{/moleculas/new}" th:object="${molecula}" method="post" novalidate>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="validationCustom01" th:field="*{name}" placeholder="Масло" required>
+            <label for="validationCustom01">Молекула</label>
+            <div class="valid-feedback">
+              Добавьте молекулу!
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Добавить молекулу</button>
+            <a href="/moleculas" class="btn btn-warning">Вернуться к списку</a>
+          </div>
+        </form><!-- End Custom Styled Validation -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

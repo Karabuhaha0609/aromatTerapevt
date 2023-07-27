@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Редактирование данных клиента</h5>
+                <form class="row g-2 needs-validation"  th:action="@{'/clients/update/' + ${client.id}}" method="put" novalidate>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom01" name="firstname" th:value="${client.firstname}" placeholder="Фамилия" required>
+                        <label for="validationCustom01">Фамилия</label>
+                        <div class="valid-feedback">
+                            Добавьте фамилию!
+                        </div>
+
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom02" name="lastname" th:value="${client.lastname}" placeholder="Имя" required>
+                        <label for="validationCustom02">Имя</label>
+                        <div class="valid-feedback">
+                            Добавьте имя!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom13" name="othername" th:value="${client.othername}" placeholder="Отчество" required>
+                        <label for="validationCustom13">Отчество</label>
+                        <div class="valid-feedback">
+                            Добавьте отчество!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom15" name="mobile" th:value="${client.mobile}" placeholder="Номер телефона" required>
+                        <label for="validationCustom15">Номер телефона</label>
+                        <div class="valid-feedback">
+                            заполните номер телефона!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="validationCustom16" name="email" th:value="${client.email}" placeholder="e-mail" required>
+                        <label for="validationCustom16">e-mail</label>
+                        <div class="valid-feedback">
+                            заполните e-mail!
+                        </div>
+                    </div>
+                    <div>
+                        <input type="date" class="form-control" th:field="${client.dateOfBirth}" th:value="${#temporals.format(client.dateOfBirth, 'yyyy-MM-dd')}" name="dateOfBirth" required>
+                   </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom034" name="dateIn" th:value="${#dates.format(client.dateIn, 'dd-MM-yyyy')}" hidden>
+                    </div>
+                    <div class="col-3">
+                        <select class="form-select"  name="shablon"  aria-label="Default select example">
+                            <option  th:each="shab : ${shablons}" th:value="${shab.id}" th:text="${shab.name}">One</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Изменить данные клиента</button>
+                        <a th:href="@{/clients}" class="btn btn-warning">Вернуться к списку</a>
+                    </div>
+                </form><!-- End Custom Styled Validation -->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

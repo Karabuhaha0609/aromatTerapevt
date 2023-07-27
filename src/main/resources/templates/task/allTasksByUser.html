@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+
+<div layout:fragment="content">
+
+
+    <section class="panel" style="width 70%">
+
+        <div class="card-body">
+            <div class="col-lg-6">
+                <a th:href="@{/tasks/create}" class="btn btn-success">Добавить новую задачу</a>
+            </div>
+        </div>
+
+    </section>
+    <section class="panel">
+        <div class="card">
+            <div class="card-body">
+                <header class=" panel-heading">
+                    <h3 class="card-title">Задачи</h3>
+                </header>
+
+                <div class="table-responsive">
+
+                <table class="table task-table">
+                    <thead class="table-light text-center">
+                    <tr>
+                        <th>Прошедшие задачи</th>
+                        <th>Задачи на сегодня</th>
+                        <th>Задачи на завтра</th>
+                        <th>Будущие задачи</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li th:each="task : ${tasksByCategory.pastTasks}">
+                                    <div class="task-item">
+                                        <div class="task-header">
+                                            <span class="font-weight-bold"
+                                                  th:text="${#temporals.format(task.deadline, 'dd.MM.yyyy -- HH:mm')}"
+                                                  style="font-weight: bold !important;"></span>
+                                        </div>
+                                        <div class="task-client">
+                                            <span class="task-client-name" th:text="${task.client.fullName}" style="font-style: italic;"></span>
+                                            <!--                      <span class="task-client-name" th:text="${task.client.lastname}"></span>-->
+                                        </div>
+                                        <div class="task-description" style="word-wrap: break-word;">
+                                            <span th:text="${task.description}"></span>
+                                        </div>
+                                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <button type="button" class="btn btn-sm btn-outline-success">Выполнить
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                <button type="button" class="btn btn-sm btn-outline-warning">Перенести
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Third group">
+                                                <button type="button" class="btn btn-sm btn-outline-danger">Удалить
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li th:each="task : ${tasksByCategory.todayTasks}">
+                                    <div class="task-item">
+                                        <div class="task-header">
+                                            <span class="font-weight-bold" style="font-weight: bold !important;"
+                                                  th:text="${#temporals.format(task.deadline, 'HH:mm')}"></span>
+                                        </div>
+                                        <div class="task-client">
+                                            <span class="task-client-name" th:text="${task.client.fullName}" style="font-style: italic;"></span>
+                                            <!--                      <span class="task-client-name" th:text="${task.client.lastname}"></span>-->
+                                        </div>
+                                        <div class="task-description">
+                                            <span th:text="${task.description}" style="word-wrap: break-word;"></span>
+                                        </div>
+                                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <button type="button" class="btn btn-sm btn-outline-success">Выполнить
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                <button type="button" class="btn btn-sm btn-outline-warning">Перенести
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Third group">
+                                                <button type="button" class="btn btn-sm btn-outline-danger">Удалить
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li th:each="task : ${tasksByCategory.tomorrowTasks}">
+                                    <div class="task-item">
+                                        <div class="task-header">
+                                            <span class="font-weight-bold" style="font-weight: bold !important;"
+                                                  th:text="${#temporals.format(task.deadline, 'HH:mm')}"></span>
+                                        </div>
+                                        <div class="task-client">
+                                            <span class="task-client-name" th:text="${task.client.fullName}" style="font-style: italic;"></span>
+                                            <!--                      <span class="task-client-name" th:text="${task.client.lastname}"></span>-->
+                                        </div>
+                                        <div class="task-description">
+                                            <span th:text="${task.description}" style="word-wrap: break-word;"></span>
+                                        </div>
+                                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <button type="button" class="btn btn-sm btn-outline-success">Выполнить
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                <button type="button" class="btn btn-sm btn-outline-warning">Перенести
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Third group">
+                                                <button type="button" class="btn btn-sm btn-outline-danger">Удалить
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li th:each="task : ${tasksByCategory.futureTasks}">
+                                    <div class="task-item">
+                                        <div class="task-header">
+                                            <span class="font-weight-bold"
+                                                  th:text="${#temporals.format(task.deadline, 'dd.MM.yyyy -- HH:mm')}"
+                                                  style="font-weight: bold !important;"></span>
+                                        </div>
+                                        <div class="task-client">
+                                            <span class="task-client-name" th:text="${task.client.fullName}" style="font-style: italic;"></span>
+                                            <!--                      <span class="task-client-name" th:text="${task.client.lastname}"></span>-->
+                                        </div>
+                                        <div class="task-description">
+                                            <span th:text="${task.description}" style="word-wrap: break-word;"></span>
+                                        </div>
+                                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <button type="button" class="btn btn-sm btn-outline-success">Выполнить
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                <button type="button" class="btn btn-sm btn-outline-warning">Перенести
+                                                </button>
+                                            </div>
+                                            <div class="btn-group mr-2" role="group" aria-label="Third group">
+                                                <button type="button" class="btn btn-sm btn-outline-danger">Удалить
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

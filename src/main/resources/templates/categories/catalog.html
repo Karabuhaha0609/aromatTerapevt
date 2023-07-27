@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<section layout:fragment="content">
+    <section class="section">
+
+
+        <div class="row align-items-top">
+            <div class="col-lg-4 ">
+                <div class="card">
+                    <div class="card-body" th:each="grup:${grupps}" >
+                        <h5 class="card-title" th:text="${grup.name}"   >With custom content</h5>
+
+                        <ol class="list-group list-group" th:each="mas : ${grup.maslos}">
+                            <li class="list-group-item d-flex justify-content-between align-items-start" th:text = "${mas.name}" >
+
+                            </li>
+
+                        </ol><!-- End with custom content -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+                </section>
+                </section>
+
+</body>
+</html>

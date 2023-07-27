@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>All Molecules</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <section class="panel" style="width 70%">
+
+    <div class="card-body">
+      <div class="col-lg-6">
+        <a th:href="@{/moleculas/new}" class="btn btn-success">Создать новую молекулу</a>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="panel">
+    <div class="card">
+      <div class="card-body">
+        <header class=" panel-heading">
+          <h3 class="card-title">Молекулы</h3>
+        </header>
+
+  <table  class="table table-hover">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Названия</th>
+      <th>действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="molecula : ${moleculas}">
+      <td th:text="${molecula.id}"></td>
+      <td th:text="${molecula.name}"></td>
+      <td>
+<!--        <a class="btn btn-warning" th:href="@{/moleculas/{id}(id=${molecula.id})}">Просмотр</a> |-->
+<!--        <a class="btn btn-success" th:href="@{/moleculas/{id}/edit(id=${molecula.id})}">Редактирование</a> |-->
+        <form  method="post" th:action="@{/moleculas/{id}/delete(id=${molecula.id})}">
+          <button class="btn btn-danger" type="submit">Удаление</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+    </div>
+
+</section>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div layout:fragment="content">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Добавить новую задачу</h5>
+                <form class="row g-2 needs-validation" th:object="${task}" th:action="@{/tasks/create}" method="post" novalidate>
+                    <div class="form-group">
+                        <label for="clientId">Клиент:</label>
+                        <select class="form-control" id="clientId" name="clientId" required>
+                            <option value="">--выбрать клиента--</option>
+                            <th:block th:each="client : ${clients}">
+                                <option th:value="${client.id}" th:text="${client.fullName}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deadline">Дата и время:</label>
+                        <input type="datetime-local" class="form-control" id="deadline" name="deadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Описание задачи:</label>
+                        <textarea  type="text" class="form-control" id="description" name="description" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Сохранить задачу</button>
+                        <a href="tasks" class="btn btn-warning">Вернуться к списку</a>
+                    </div>
+                </form><!-- End Custom Styled Validation -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Добавьте молекулы к маслу</h5>
+                <form th:action="@{/maslo/update/{id}(id=${maslo.id})}" method="post">
+                    <label for="molecules" type="text" th:value="${maslo.name}">Molecules:</label><br>
+                    <th:block th:each="molecule : ${moleculeList}">
+                        <input id="molecules" type="checkbox" th:name="molecules" th:value="${molecule.id}"
+                               th:checked="${selectedMolecules.contains(molecule)}"/>
+                        <label th:for="${'molecule-' + molecule.id}" th:text="${molecule.name}">Molecule</label><br>
+                    </th:block>
+                    <br>
+                    <input type="submit" value="Update">
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

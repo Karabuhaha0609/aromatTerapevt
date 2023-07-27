@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Изменить шаблон клиенту</h5>
+<!--                <form class="row g-2 needs-validation"  th:action="@{'/clients/updateShab/' + ${client.id}}" method="put" novalidate>-->
+
+<!--                    <div class="form-floating mb-3">-->
+<!--                        <input type="text" class="form-control" id="validationCustom034" name="dateIn" th:value="${#dates.format(client.dateIn, 'dd-MM-yyyy')}" hidden>-->
+<!--                    </div>-->
+<!--                    <div class="col-3">-->
+<!--                        <select class="form-select"  name="shablon"  aria-label="Default select example">-->
+<!--                            <option  th:each="shab : ${shablons}" th:value="${shab.id}" th:text="${shab.name}">One</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="col-12">-->
+<!--                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Изменить шаблон</button>-->
+<!--                        <a th:href="@{'/clientKartochka/' + ${client.id}}" class="btn btn-warning">Вернуться к списку</a>-->
+<!--                    </div>-->
+<!--                </form>&lt;!&ndash; End Custom Styled Validation &ndash;&gt;-->
+                <form class="row g-2 needs-validation" th:action="@{'/clients/updateShab/' + ${client.id}}" method="put" novalidate>
+                    <input type="hidden" name="id" th:value="${client.id}" />
+                    <input type="hidden" name="firstname" th:value="${client.firstname}" />
+                    <input type="hidden" name="lastname" th:value="${client.lastname}" />
+                    <input type="hidden" name="othername" th:value="${client.othername}" />
+                    <input type="hidden" name="dateOfBirth" th:value="${client.dateOfBirth}" />
+                    <input type="text" class="form-control" name="dateIn" th:value="${#dates.format(client.dateIn, 'dd-MM-yyyy')}" hidden>
+                    <input type="hidden" name="mobile" th:value="${client.mobile}" />
+                    <input type="hidden" name="email" th:value="${client.email}" />
+                    <input type="hidden" name="photo" th:value="${client.photo}" />
+                    <input type="hidden" name="user" th:value="${client.user.id}" />
+                    <div class="col-3">
+                        <select class="form-select" name="shablon" aria-label="Default select example">
+                            <option th:each="shab : ${shablons}" th:value="${shab.id}" th:text="${shab.name}">One</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Изменить шаблон</button>
+                        <a th:href="@{'/clientKartochka/' + ${client.id}}" class="btn btn-warning">Вернуться к списку</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

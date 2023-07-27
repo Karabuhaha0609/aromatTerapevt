@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div layout:fragment="content">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Добавить масло</h5>
+                <form class="row g-2 needs-validation" th:action="@{/masloNew}" method="post" novalidate>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Масло" required>
+                        <label for="validationCustom01">Масло</label>
+                        <div class="valid-feedback">
+                            Добавьте масло!
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ddlCountryAdd" class="col-form-label">Группа: </label>
+                        <select class="form-control" id="ddlCountryAdd" name="gruppa" required>
+                            <option th:value="${null}">-SELECT-</option>
+                            <option th:each="grup : ${grupps}"
+                                    th:value="${grup.id}"
+                                    th:text="${grup.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Добавить масло</button>
+                        <a href="clients" class="btn btn-warning">Вернуться к списку</a>
+                    </div>
+                </form><!-- End Custom Styled Validation -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

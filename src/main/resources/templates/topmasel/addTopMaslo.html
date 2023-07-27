@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+  <form th:action="@{/clientKartochka/{id}/addMaslo(id=${client.id})}" method="post">
+  <h2>Создать топ масел</h2>
+
+  <div class="card">
+
+    <div class="card-body" th:each="entry : ${allMaslos}">
+      <h5 class="card-title" th:text="${entry.key.name}"></h5>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card-body col-6">
+
+
+
+    <div th:each="maslo : ${entry.value}">
+      <label>
+        <input type="checkbox" name="topMasels" th:value="${maslo.id}" th:checked="${client.topMasels.contains(maslo)}" />
+        <span th:text="${maslo.name}"></span>
+      </label>
+    </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col-6">
+      <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Сохранить</button>
+      <a class="btn btn-warning" th:href="@{/clientKartochka/{clientId}(clientId=${client.id})}">Отмена</a>
+    </div>
+</form>
+</div>
+</body>
+</html>

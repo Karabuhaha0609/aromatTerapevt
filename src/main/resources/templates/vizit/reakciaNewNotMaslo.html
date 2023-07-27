@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+<!--    <form class="row g-2 needs-validation" th:object="${reakcia}" th:action="@{'/clientKartochka/' + ${client_id} + '/newreakcia'}" method="post"-->
+<!--          novalidate>-->
+<!--        <div class="row">-->
+<!--            <div class="col">-->
+<!--                <input type="date" th:field="*{dataVstrech}" pattern = "dd-MM-yyyy" class="form-control" >-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--                <input type="hidden" th:value="${client}" th:field="${reakcia.client}">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-12">-->
+<!--            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>Добавить день визита</button>-->
+<!--&lt;!&ndash;            <a th:href="@{/clientKartochka/?client_id}" class="btn btn-warning">Вернуться к списку</a>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </form>&lt;!&ndash; End Custom Styled Validation &ndash;&gt;-->
+
+
+    <form class="row g-2 needs-validation" th:object="${reakcia}" th:action="@{'/clientKartochka/' + ${client_id} + '/newreakcia'}" method="post"
+          novalidate>
+        <div class="col-md-5" >
+            <div class="col">
+                <input type="date" th:field="*{dataVstrech}" pattern = "dd-MM-yyyy" class="form-control" >
+            </div>
+            <div class="col">
+                <input type="hidden" th:value="${client}" th:field="${reakcia.client}">
+            </div>
+
+
+                    <div class="card" >
+                        <div class="card-body" th:each="entry, stat : ${maslolist}">
+                            <h5 class="card-title" th:text="${entry.key.name}">Пряные</h5>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Название масла</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                <tr th:each="mas : ${entry.value}">
+                                                    <td th:value="*{maslo.id}" th:field="${reakcia.maslo}" th:text="${mas.name}">Апельсин</td>
+                                                    <td >
+
+                                                        <select class="form-select" th:field="*{reakciaPK.reakciaEnum}"
+                                                                aria-label="Default select example">
+
+                                                            <option th:each="reac : ${reakciaEnum}" th:value="${reac}"
+                                                                    th:text="${reac.reakciaName}">One
+                                                            </option>
+                                                        </select>
+
+                                                    </td>
+
+                                                </tr>
+                                                <!--                                                </div>-->
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Изменить данные клиента</button>
+                        <a th:href="@{/clientKartochka/?client_id}" class="btn btn-warning">Вернуться к списку</a>
+                    </div>
+        </div>
+    </form><!-- End Custom Styled Validation -->
+
+</div>
+
+</body>
+</html>

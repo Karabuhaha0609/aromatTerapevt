@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+
+    <section class="section">
+        <a href="/masloNew" class="btn btn-success"></a>
+        <div class="row align-items-top">
+            <div class="col-lg-6">
+
+                <!-- Default Card -->
+                <div class="card" >
+                    <div class="card-body" >
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Группа</th>
+                                <th>Масло</th>
+                                <th>Молекулы</th>
+                                <th>Добавить молекулы</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Loop over each group -->
+                            <th:block th:each="groupedMaslo : ${groupedMaslos}">
+                                <!-- Output the group name -->
+                                <tr>
+                                    <td th:text="${groupedMaslo.key.name}"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <!-- Loop over each oil in the group -->
+                                <th:block th:each="maslo : ${groupedMaslo.value}">
+                                    <tr>
+                                        <!-- Output the oil name -->
+                                        <td></td>
+                                        <td th:text="${maslo.name}"></td>
+                                        <!-- Output the list of molecules for the oil -->
+                                        <td>
+                                            <ul>
+                                                <th:block th:each="molecule : ${maslo.molecules}">
+                                                    <li th:text="${molecule.name}"></li>
+                                                </th:block>
+                                            </ul>
+                                        </td>
+                                        <!-- Button to edit the oil's list of molecules -->
+                                        <td>
+                                            <div class="btn-group">
+                                            <a class="btn btn-warning" th:href="@{'/maslo/edit/' + ${maslo.id}}">Добавить молеклуы</a>
+
+                                            <a class="btn btn-danger" th:href="@{'/maslo/delete/' + ${maslo.id}}">Удалить</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </th:block>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    </div>
+                    </div>
+                </div><!-- End Default Card -->
+
+   </section>
+</div>
+
+</body>
+</html>

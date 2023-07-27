@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+
+
+    <section class="panel" style="width 70%">
+
+        <div class="card-body">
+            <div class="col-lg-6">
+                <a th:href="@{/shablonnew}" class="btn btn-success">Создать шаблон</a>
+            </div>
+        </div>
+    </section>
+
+<!--      <div class="col-lg-3">-->
+
+<!--        &lt;!&ndash; Default Card &ndash;&gt;-->
+<!--        <div class="card" th:each="shab:${shablons}">-->
+<!--          <div class="card-body" >-->
+<!--            <a th:href="@{'shablonid/' + ${shab.id}}" th:text="${shab.name}"><i class="bx bxs-pencil"></i></a>-->
+<!--          </div>-->
+<!--        </div>&lt;!&ndash; End Default Card &ndash;&gt;-->
+
+<!--      </div>-->
+
+    <section class="panel">
+        <div class="card col-sm-4">
+            <div class="card-body">
+                <header class=" panel-heading">
+                    <h3 class="card-title">Шаблоны</h3>
+                </header>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="shab:${shablons}">
+                        <td th:text="${shab.name}"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-warning" ><i
+                                        class="bi bi-list-check"></i></a>
+                                <a class="btn btn-success" ><i
+                                        class="bx bxs-pencil"></i></a>
+                                <a class="btn btn-danger"
+                                   onclick="return confirm('Удалить клиента?')"
+                                   ><i class="bi bi-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

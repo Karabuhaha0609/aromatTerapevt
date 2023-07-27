@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Vizit</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Новый визит</h2>
+
+    <form th:action="@{/clientKartochka/{clientId}/vizit/new(clientId=${client.id})}" th:object="${vizit}" method="post">
+
+    <div class="form-group row">
+            <label for="dataVstrech" class="col-sm-2 col-form-label">Дата встречи:</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="dataVstrech" th:field="*{dataVstrech}" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="shablon" th:value="${shablon.name}" readonly>
+            </div>
+        </div>
+        <div th:each="groupedMaslo, status : ${groupedMaslos}">
+            <h5 th:text="${groupedMaslo.key.name}"></h5>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Масло</th>
+                    <th scope="col">Реакция</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="maslo : ${groupedMaslo.value}">
+                    <td th:text="${maslo.name}"></td>
+                    <td>
+                        <select class="form-control" th:field="*{reakciaMaslo[__${maslo.id}__]}">
+                            <option value="" selected>Выберите реакцию...</option>
+                            <option th:each="reakcia : ${reakciaEnumValues}" th:value="${reakcia.getReakciaName()}"
+                                    th:text="${reakcia.getReakciaName()}"></option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a class="btn btn-info" th:href="@{/clientKartochka/{clientId}(clientId=${client.id})}">Отмена</a>
+
+    </form>
+</div>
+</body>
+</html>

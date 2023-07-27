@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+
+    <form th:action="@{/clientKartochka/{clientId}/vizit/new(clientId=${client.id})}" th:object="${vizit}" method="post"
+          novalidate>
+        <div class="card">
+            <div class="card-body">
+
+                <div type="text" th:each="cli:${client}">
+                    <ins><h1 class="display-6"  th:text="${cli.fullName}"></h1></ins>
+                </div>
+
+                <div class="row">
+                    <label for="dataVstrech" class="col-sm-6 col-form-label">Дата встречи:</label>
+                    <div class="col-sm-3">
+
+                        <input type="date" class="form-control" id="dataVstrech" th:field="*{dataVstrech}" required
+                               th:value="${#temporals.format(dataVstrech, 'dd-MM-yyyy')}"
+
+                        ><span id="formatted-date"></span>
+                    </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="shablon" th:value="${shablon.name}" disabled>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body" th:each="groupedMaslo, status : ${groupedMaslos}">
+                <h5 class="card-title" th:text="${groupedMaslo.key.name}"></h5>
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+<!--                        <div class="card col-4">-->
+                            <div class="card-body col-6">
+
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Масло</th>
+                                        <th scope="col">Реакция</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="maslo : ${groupedMaslo.value}">
+                                        <td class="col-3" th:text="${maslo.name}"></td>
+                                        <td class="col-3">
+                                            <select class="form-control text-center" onchange="changeColor(this)" th:field="*{reakciaMaslo[__${maslo.id}__]}">
+                                               <option value="" selected></option>
+
+                                                <option   th:each="reakcia : ${reakciaEnumValues}"
+                                                        th:value="${reakcia.getReakciaName()}"
+                                                th:text="${reakcia.getReakciaName()}"></option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Сохранить</button>
+            <a class="btn btn-warning" th:href="@{/clientKartochka/{clientId}(clientId=${client.id})}">Отмена</a>
+        </div>
+        <script src="/assets/js/colVizit.js"></script>
+
+    </form><!-- End Custom Styled Validation -->
+
+</div>
+
+
+</body>
+</html>

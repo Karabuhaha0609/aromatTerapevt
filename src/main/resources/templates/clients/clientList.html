@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div layout:fragment="content">
+
+
+    <section class="panel" style="width 70%">
+
+        <div class="card-body">
+            <div class="col-lg-6">
+                <a th:href="@{/clientNew}" class="btn btn-success">Добавить нового клиента</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="panel">
+        <div class="card">
+            <div class="card-body">
+                <header class=" panel-heading">
+                    <h3 class="card-title">Клиенты</h3>
+                </header>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th><i class="ri-account-box-line"></i> ФИО</th>
+                        <th><i class="bi bi-telephone-plus"></i> Телефон</th>
+                        <th><i class="bx bx-envelope"></i> e-mail</th>
+                        <th><i class="bi bi-calendar-date"></i> Дата рождения</th>
+                        <th><i class="bi bi-clock"></i> Возраст</th>
+                        <th><i class="bi bi-calendar-date"></i> Дата регистрации</th>
+                        <th><i class="bx bxs-pencil"></i> Редактирование</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="client : ${clients}">
+                        <td th:text="${client.firstname} + ' ' + ${client.lastname}"></td>
+                        <td th:text="${client.mobile}"></td>
+                        <td th:text="${client.email}"></td>
+
+                        <td th:text="${#temporals.format(client.dateOfBirth, 'dd-MM-yyyy')}"></td>
+                        <td th:text="${clientService.calculateAge(client)}"></td>
+
+                        <td th:text="${#dates.format(client.dateIn, 'dd-MM-yyyy')}"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-warning" th:href="@{'clientKartochka/' + ${client.id}}"><i
+                                        class="bi bi-list-check"></i></a>
+                                <a class="btn btn-success" th:href="@{'clientEdit/' + ${client.id}}"><i
+                                        class="bx bxs-pencil"></i></a>
+                                <a class="btn btn-danger"
+                                   onclick="return confirm('Удалить клиента?')"
+                                   th:href="@{'/clients/delete/' + ${client.id}}"><i class="bi bi-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

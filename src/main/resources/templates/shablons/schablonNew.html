@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<section layout:fragment="content">
+    <section class="section">
+        <div class="row align-items-top">
+            <div class="col-lg-6">
+                <form class="row g-3" th:action="@{/shablonnew}" th:object="${shablon}" method="post">
+                <!-- Default Card -->
+                <div class="card">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom16" name="name" placeholder="Введите название шаблона" required>
+                        <label for="validationCustom16">Введите название шаблона</label>
+                        <div class="valid-feedback">
+                            название шаблона!
+                        </div>
+                    </div>
+                    <div class="card-body" th:each="grup:${grupps}">
+                        <h5 class="card-title" th:text="${grup.name}">Default Card</h5>
+                        <div class="form-check" th:each="mas : ${grup.maslos}">
+                            <input class="form-check-input" type="checkbox" name="maslos"  id="flexCheckDefault" th:field="*{maslos}" th:value="${mas.id}"  th:text = ${mas.name}>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Добавить новый шаблон</button>
+                        <a href="shablons" class="btn btn-warning">Вернуться к списку</a>
+                    </div>
+                </form>
+                </div>
+                </div>
+                </section>
+                </section>
+
+</body>
+</html>

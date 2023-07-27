@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<body>
+
+<div layout:fragment="content">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Редактирование данных клиента</h5>
+                <form class="row g-2 needs-validation"  th:action="@{'/clients/update/' + ${client.id}}" method="put" novalidate>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom01" name="firstname" th:value="${client.firstname}" placeholder="Фамилия" required>
+                        <label for="validationCustom01">Фамилия</label>
+                        <div class="valid-feedback">
+                            Добавьте фамилию!
+                        </div>
+
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom02" name="lastname" th:value="${client.lastname}" placeholder="Имя" required>
+                        <label for="validationCustom02">Имя</label>
+                        <div class="valid-feedback">
+                            Добавьте имя!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom13" name="othername" th:value="${client.othername}" placeholder="Отчество" required>
+                        <label for="validationCustom13">Отчество</label>
+                        <div class="valid-feedback">
+                            Добавьте отчество!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom14" name="address" th:value="${client.address}" placeholder="Адрес" required>
+                        <label for="validationCustom14">Адрес</label>
+                        <div class="valid-feedback">
+                            заполните адрес!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="validationCustom15" name="mobile" th:value="${client.mobile}" placeholder="Номер телефона" required>
+                        <label for="validationCustom15">Номер телефона</label>
+                        <div class="valid-feedback">
+                            заполните номер телефона!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="validationCustom16" name="email" th:value="${client.email}" placeholder="e-mail" required>
+                        <label for="validationCustom16">e-mail</label>
+                        <div class="valid-feedback">
+                            заполните e-mail!
+                        </div>
+                    </div>
+                    <!--                    <div class="row mb-3">-->
+                    <!--                        <label class="col-sm-3 col-form-label">Дата рождения</label>-->
+                    <!--                        <div class="col-sm-3">-->
+                    <!--                            <input type="date" name="dateOfBirth" th:value="${client.email}" class="form-control">-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i>   Изменить данные клиента</button>
+                        <a th:href="@{/clients}" class="btn btn-warning">Вернуться к списку</a>
+                    </div>
+                </form><!-- End Custom Styled Validation -->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
